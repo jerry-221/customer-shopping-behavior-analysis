@@ -64,7 +64,6 @@ A leading retail company wanted to better understand its customers to improve sa
 1.  **The Subscription Gap:** Non-subscribers generate roughly 4× the total revenue of subscribers and have a slightly higher average spend. The subscription program is currently attracting lower-value customers, indicating a need for a program revamp.
 2.  **Discount Dependency:** Top-selling products like Sunglasses, Boots, and Hats rely on discounts for ~45% of their sales. These pose a margin risk as they struggle to sell at full price.
 3.  **Demographic Revenue Drivers:** Male customers generate 52% of total revenue (on 68% of the customer base), but female customers have a notably higher average spend per order. 
-4.  **Geographic Concentration:** [Insert your top region insight here, e.g., The South region generates the highest total revenue, driven by a high volume of Young Adult shoppers].
 
 ---
 
@@ -78,4 +77,4 @@ A leading retail company wanted to better understand its customers to improve sa
 *   `Dashboard_Screenshot 2026-11-06 131744.png` — High-res image of the final dashboard.
 
 ---
-*Created by [Pranav Pail] -*
+*Created by Pranav Pail*
