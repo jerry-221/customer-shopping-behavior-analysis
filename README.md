@@ -59,7 +59,8 @@ A leading retail company wanted to better understand its customers to improve sa
 
 ## 🖥️ Dashboard Preview
 
-*(Upload your dashboard image to the repository and ensure it is named `dashboard_screenshot.png` so it renders below)*
+<img width="1327" height="732" alt="Screenshot 2026-11-06 131744" src="https://github.com/user-attachments/assets/f6718248-04ab-4b3c-8d7a-ca383a3fa8bd" />
+
 
 ![Customer Behavior Dashboard](dashboard_screenshot.png)
 
