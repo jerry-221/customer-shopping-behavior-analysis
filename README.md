@@ -2,54 +2,44 @@
 
 An end-to-end data analytics project analyzing the shopping behavior of 3,900 retail customers to uncover revenue drivers, identify customer segments, and optimize product strategies.
 
-This project covers the complete data lifecycle: **Python (Data Cleaning & EDA) ➔ MySQL (Advanced SQL Analysis) ➔ Power BI (Interactive Dashboard).**
+This project covers the complete data lifecycle: **Python (Data Cleaning & Feature Engineering) ➔ MySQL (Advanced SQL Analysis) ➔ Power BI (Interactive Dashboard).**
 
 ---
 
-## 🚀 Quick Links (For Recruiters)
-*Explore the deliverables directly:*
+## 🚀 Project Deliverables (For Recruiters)
 
-*   📊 **[View the Interactive Power BI Dashboard](https://github.com/jerry-221/customer-shopping-behavior-analysis/blob/main/Customer_Behavior_Dashboard.pbix)** *(Download and open in Power BI Desktop)*
-*   💻 **[View the 33 SQL Business Queries](https://github.com/jerry-221/customer-shopping-behavior-analysis/blob/main/queries.sql)**
-*   📁 **[View SQL Query Results & Screenshots](https://github.com/jerry-221/customer-shopping-behavior-analysis/tree/main/Queries_screenshots)**
-*   📓 **[View the Python Jupyter Notebook](https://github.com/jerry-221/customer-shopping-behavior-analysis/blob/main/Customer_Shopping_Behavior_code.ipynb)**
-*   🖼️ **[View Dashboard Screenshot](https://github.com/jerry-221/customer-shopping-behavior-analysis/blob/main/Dashboard_Screenshot%202026-11-06%20131744.png)**
-
----
-
-## 📖 Project Overview
-A leading retail company wanted to better understand its customers to improve sales, satisfaction, and loyalty. Management needed to know which factors—such as discounts, reviews, seasons, or payment preferences—drive consumer decisions and repeat purchases. 
-
-**Core Business Question:** *How can the company leverage customer shopping data to identify trends, improve engagement, and optimize marketing and product strategies?*
+*   📊 **[Interactive Power BI Dashboard](https://github.com/jerry-221/customer-shopping-behavior-analysis/blob/main/Customer_Behavior_Dashboard.pbix)** *(Download and open in Power BI Desktop)*
+*   💻 **[33 SQL Business Queries](https://github.com/jerry-221/customer-shopping-behavior-analysis/blob/main/queries.sql)**
+*   📁 **[SQL Query Results & Screenshots](https://github.com/jerry-221/customer-shopping-behavior-analysis/tree/main/Queries_screenshots)**
+*   📓 **[Python Jupyter Notebook](https://github.com/jerry-221/customer-shopping-behavior-analysis/blob/main/Customer_Shopping_Behavior_code.ipynb)**
+*   🖼️ **[Dashboard Screenshot](https://github.com/jerry-221/customer-shopping-behavior-analysis/blob/main/Dashboard_Screenshot%202026-11-06%20131744.png)**
 
 ---
 
-## 🗂️ Dataset
-*   **Source:** `customer_shopping_behavior.csv`
-*   **Size:** 3,900 rows and 18 initial columns.
-*   **Attributes:** Customer demographics (Age, Gender, Location), purchase details (Item, Category, Amount), and behavioral metrics (Review Rating, Subscription Status, Payment Method, Purchase Frequency).
+## 📖 Business Problem
+A leading retail company wanted to understand its customers' purchasing patterns across demographics, categories, and sales channels. The objective was to uncover which factors (discounts, reviews, seasons, payment methods) drive consumer decisions and repeat purchases. 
+
+**Core Question:** *How can the company leverage shopping data to identify trends, improve engagement, and optimize product strategies?*
 
 ---
 
-## 🛠️ Tools & Technologies
-*   **Python (pandas, seaborn):** Data cleaning, handling missing values, and feature engineering.
-*   **MySQL:** Relational database storage and advanced business querying.
-*   **Power BI:** Interactive dashboard design, KPI tracking, and data visualization.
+## 🛠️ Tech Stack & Workflow
 
----
+*   **Python (pandas, seaborn):** Handled data cleaning, imputed missing values, and engineered 11 new features.
+*   **MySQL:** Stored the cleaned dataset and ran advanced analytical queries.
+*   **Power BI:** Built an executive dashboard with interactive slicers, cross-filtering, and KPI cards.
+*   **Git/GitHub:** Version control and documentation.
 
-## ⚙️ Project Workflow
+### 1. Data Engineering (Python)
+*   **Imputation:** Filled 37 missing `Review Rating` values using category-level medians to prevent demographic bias.
+*   **Dimensionality Reduction:** Dropped the redundant `promo_code_used` column after verifying a 100% match with `discount_applied`.
+*   **Feature Engineering:** Created 11 new business metrics, including `customer_lifetime_value` (approximate), `loyalty_tier` (New/Returning/Loyal), `region` (mapped 50 states to 4 US regions), and `purchase_frequency_days`.
 
-1.  **Data Cleaning & Feature Engineering (Python):**
-    *   Imputed missing `Review Rating` values using category-level medians.
-    *   Dropped redundant columns (verified `promo_code_used` was identical to `discount_applied`).
-    *   Engineered 11 new features, including `loyalty_tier` (New/Returning/Loyal), `region`, and `customer_lifetime_value`.
-2.  **SQL Analysis (MySQL):**
-    *   Exported the cleaned dataset to a MySQL database.
-    *   Wrote **33 queries** ranging from basic aggregations to advanced analytics using Window Functions (`ROW_NUMBER()`, `NTILE()`) and CTEs to extract deep insights.
-3.  **Data Visualization (Power BI):**
-    *   Connected Power BI directly to the database.
-    *   Built an interactive executive dashboard featuring cross-filtering slicers, KPI cards, and demographic breakdowns.
+### 2. Advanced SQL Analytics (MySQL)
+Wrote 33 queries ranging from basic descriptive statistics to complex window functions. Key technical highlights include:
+*   **Window Functions:** Used `ROW_NUMBER()` to rank products by order volume within their specific category.
+*   **CTEs & Self-Joins:** Used Common Table Expressions to calculate product performance vs. overall averages and to identify margin-risk inventory.
+*   **Pareto (80/20) Analysis:** Leveraged nested `SUM() OVER()` window functions to calculate the cumulative revenue distribution of the customer base.
 
 ---
 
@@ -61,20 +51,22 @@ A leading retail company wanted to better understand its customers to improve sa
 
 ## 💡 Key Business Insights
 
-1.  **The Subscription Gap:** Non-subscribers generate roughly 4× the total revenue of subscribers and have a slightly higher average spend. The subscription program is currently attracting lower-value customers, indicating a need for a program revamp.
-2.  **Discount Dependency:** Top-selling products like Sunglasses, Boots, and Hats rely on discounts for ~45% of their sales. These pose a margin risk as they struggle to sell at full price.
-3.  **Demographic Revenue Drivers:** Male customers generate 52% of total revenue (on 68% of the customer base), but female customers have a notably higher average spend per order. 
+1.  **The Subscription Paradox:** Non-subscribers account for 73% of the customer base and generate roughly **$170K in revenue**, whereas the 1,053 subscribers generate only **$62K**. Average spend is virtually identical (~$59). The subscription program is failing to upsell customers and needs an incentive revamp.
+2.  **Geographic Concentration:** The **South region is the highest revenue driver ($75,275)**, while the Northeast is the lowest ($39,933). Marketing spend should be reallocated toward the South and West regions to maximize ROI.
+3.  **Discount Dependency:** Top-selling products like **Sunglasses, Boots, and Hats** show a **44–46% discount application rate**. This indicates a high margin-risk dependency; these items likely struggle to sell at full retail price.
+4.  **Demographic Sweet Spot:** **Young Adults (18-28)** and **Middle-Aged** demographics drive the highest revenue (~$60K+ each). Additionally, male customers generate 52% of total revenue but female customers spend slightly more per order on average.
+5.  **Payment Preferences:** Digital Wallets (PayPal, Venmo) and Credit Cards dominate, making up the vast majority of transactions, suggesting the checkout UX should be optimized primarily for these digital methods.
 
 ---
 
 ## 📂 Repository Structure
-*   `Customer_Shopping_Behavior_code.ipynb` — Python notebook for EDA, cleaning, and feature engineering.
+*   `Customer_Shopping_Behavior_code.ipynb` — Python EDA, data cleaning, and feature engineering.
 *   `customer_shopping_behavior.csv` — Raw dataset.
-*   `customer_shopping_behavior_clean.csv` — Final cleaned dataset used for SQL and Power BI.
-*   `queries.sql` — All 33 SQL queries with business context comments.
-*   `Queries_screenshots/` — Folder containing screenshots of key SQL query results.
-*   `Customer_Behavior_Dashboard.pbix` — The actual Power BI file.
-*   `Dashboard_Screenshot 2026-11-06 131744.png` — High-res image of the final dashboard.
+*   `customer_shopping_behavior_clean.csv` — Cleaned, 30-column dataset used for SQL and BI.
+*   `queries.sql` — 33 formatted SQL queries with business context.
+*   `Queries_screenshots/` — Visual proof of the 8 most impactful SQL results.
+*   `Customer_Behavior_Dashboard.pbix` — The interactive Power BI file.
+*   `Dashboard_Screenshot 2026-11-06 131744.png` — High-res image of the dashboard.
 
 ---
-*Created by Pranav Pail*
+*Created by Pranav Patil*
